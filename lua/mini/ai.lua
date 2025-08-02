@@ -1054,6 +1054,13 @@ MiniAi.select_textobject = function(ai_type, id, opts)
   opts = opts or {}
   local operator_pending = opts.operator_pending
 
+  if ai_type and id then
+    vim.api.nvim_exec_autocmds('User', {
+      pattern = 'MiniAiSelectObject',
+      data    = ai_type..id,
+    })
+  end
+
   -- Exit to Normal before getting textobject id. This way invalid id doesn't
   -- result into staying in current mode (which seems to be more convenient).
   H.exit_to_normal_mode()
