@@ -1140,6 +1140,13 @@ MiniAi.select_textobject = function(ai_type, id, opts)
   if H.is_disabled() then return end
   opts = opts or {}
 
+  if ai_type and id then
+    vim.api.nvim_exec_autocmds('User', {
+      pattern = 'MiniAiSelectObject',
+      data    = ai_type..id,
+    })
+  end
+
   local tobj = MiniAi.find_textobject(ai_type, id, opts)
   -- NOTE: don't stay in current mode for bad id (seems to be more convenient)
   if tobj == nil then return H.ensure_normal_mode() end
