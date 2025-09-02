@@ -1236,8 +1236,8 @@ H.apply_config = function(config)
     H.map(mode, lhs, rhs, opts)
   end
 
-  m({ 'n', 'x', 'o' }, maps.goto_left,  function() return H.expr_motion('left') end,   { desc = 'Move to left "around"' })
-  m({ 'n', 'x', 'o' }, maps.goto_right, function() return H.expr_motion('right') end,  { desc = 'Move to right "around"' })
+  m({ 'n', 'x', 'o' }, maps.goto_left,  function() return H.expr_motion('left') end,   { desc = 'Move to Left "Around"' })
+  m({ 'n', 'x', 'o' }, maps.goto_right, function() return H.expr_motion('right') end,  { desc = 'Move to Right "Around"' })
 
   local make_tobj = function(mode, ai_type, search_method)
     return function() return H.expr_textobject(mode, ai_type, { search_method = search_method }) end
@@ -1248,14 +1248,14 @@ H.apply_config = function(config)
   m('o', maps.around, make_tobj('o', 'a'), { desc = 'Around textobject' })
   m('o', maps.inside, make_tobj('o', 'i'), { desc = 'Inside textobject' })
 
-  m('x', maps.around_next, make_tobj('x', 'a', 'next'), { desc = 'Around next textobject' })
-  m('x', maps.around_last, make_tobj('x', 'a', 'prev'), { desc = 'Around last textobject' })
-  m('x', maps.inside_next, make_tobj('x', 'i', 'next'), { desc = 'Inside next textobject' })
-  m('x', maps.inside_last, make_tobj('x', 'i', 'prev'), { desc = 'Inside last textobject' })
-  m('o', maps.around_next, make_tobj('o', 'a', 'next'), { desc = 'Around next textobject' })
-  m('o', maps.around_last, make_tobj('o', 'a', 'prev'), { desc = 'Around last textobject' })
-  m('o', maps.inside_next, make_tobj('o', 'i', 'next'), { desc = 'Inside next textobject' })
-  m('o', maps.inside_last, make_tobj('o', 'i', 'prev'), { desc = 'Inside last textobject' })
+  m('x', maps.around_next, make_tobj('x', 'a', 'next'), { desc = 'Around Next textobject' })
+  m('x', maps.around_last, make_tobj('x', 'a', 'prev'), { desc = 'Around Last textobject' })
+  m('x', maps.inside_next, make_tobj('x', 'i', 'next'), { desc = 'Inside Next textobject' })
+  m('x', maps.inside_last, make_tobj('x', 'i', 'prev'), { desc = 'Inside Last textobject' })
+  m('o', maps.around_next, make_tobj('o', 'a', 'next'), { desc = 'Around Next textobject' })
+  m('o', maps.around_last, make_tobj('o', 'a', 'prev'), { desc = 'Around Last textobject' })
+  m('o', maps.inside_next, make_tobj('o', 'i', 'next'), { desc = 'Inside Next textobject' })
+  m('o', maps.inside_last, make_tobj('o', 'i', 'prev'), { desc = 'Inside Last textobject' })
 end
 
 H.is_disabled = function() return vim.g.miniai_disable == true or vim.b.miniai_disable == true end
