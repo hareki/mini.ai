@@ -1075,10 +1075,17 @@ MiniAi.select_textobject = function(ai_type, id, opts)
 
   -- Exit to Normal before getting textobject id. This way invalid id doesn't
   -- result into staying in current mode (which seems to be more convenient).
+  local prev_mode = vim.fn.mode()
   H.exit_to_normal_mode()
 
   local tobj = MiniAi.find_textobject(ai_type, id, opts)
-  if tobj == nil then return end
+  if tobj == nil then
+    -- Restore visual mode if we were in it
+    if H.is_visual_mode(prev_mode) then
+      vim.cmd('normal! gv')
+    end
+    return
+  end
 
   local set_cursor = function(position) vim.api.nvim_win_set_cursor(0, { position.line, position.col - 1 }) end
 
