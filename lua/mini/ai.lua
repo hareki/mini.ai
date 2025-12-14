@@ -1148,8 +1148,12 @@ MiniAi.select_textobject = function(ai_type, id, opts)
   end
 
   local tobj = MiniAi.find_textobject(ai_type, id, opts)
-  -- NOTE: don't stay in current mode for bad id (seems to be more convenient)
-  if tobj == nil then return H.ensure_normal_mode() end
+  if tobj == nil then
+    -- NOTE: don't stay in current mode for bad id (seems to be more
+    -- convenient), but keep the active Visual selection
+    if not H.is_visual_mode() then H.ensure_normal_mode() end
+    return
+  end
 
   -- Allow empty regions
   local tobj_is_empty = tobj.to == nil
